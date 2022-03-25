@@ -1,0 +1,29 @@
+@import '../../utils/colors';
+
+.headerNav {
+    background-color: $secondary-color;
+    display: flex;
+
+    align-items: center;
+    height: 91px;
+    box-shadow: 0px 4px 4px 0px #00000025;
+    &__img {
+        padding-top: 10px;
+        padding-left: 28px;
+    }
+    &__container {
+        width: 80%;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    &__link {
+        font-size: 24px;
+        color: $white;
+        text-decoration: none;
+    }
+    &__link:hover,
+    &__img:hover {
+        transform: scale(1.4);
+    }
+}

@@ -1,0 +1,22 @@
+@import '../../utils/colors';
+
+.accueil {
+    font-size: 48px;
+    font-weight: inherit;
+    padding-left: 107px;
+    &__firstName {
+        color: $primary-red;
+    }
+    &__congratulations {
+        //margin-top: 30px;
+        font-size: 18px;
+        font-weight: 400;
+    }
+    &__error,
+    &__loading {
+        padding-left: 107px;
+        color: $primary-red;
+        font-size: 48px;
+        font-weight: 500;
+    }
+}

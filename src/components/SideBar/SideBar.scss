@@ -1,0 +1,36 @@
+@import '../../utils/colors';
+
+.sideBar {
+    background: $secondary-color;
+    width: 117px;
+    position: absolute;
+    top: 0px;
+    height: 100%;
+    z-index: -1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    vertical-align: middle;
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 347px;
+    }
+
+    &__icon {
+        margin-bottom: 20px;
+    }
+    &__icon:hover {
+        transform: scale(1.4);
+    }
+
+    &__text {
+        color: $white;
+        transform: rotate(-90deg);
+        font-size: 12px;
+        white-space: nowrap;
+        margin-left: -10px;
+    }
+}

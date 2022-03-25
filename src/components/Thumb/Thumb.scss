@@ -1,0 +1,16 @@
+@import '../../utils/colors';
+
+.thumb {
+    text-align: center;
+    margin-top: 12%;
+
+    font-size: 100px;
+    :hover {
+        color: $primary-red;
+    }
+
+    &__link {
+        text-decoration: none;
+        color: $secondary-color;
+    }
+}

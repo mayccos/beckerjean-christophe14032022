@@ -1,0 +1,10 @@
+@import '../../utils/colors';
+
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 85%;
+    height: 100%;
+    margin: auto;
+}
