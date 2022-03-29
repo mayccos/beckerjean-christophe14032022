@@ -1,0 +1,36 @@
+@import '../../utils/colors';
+
+.averageSessions {
+    height: 43%;
+    width: 20%;
+    background: $primary-red;
+    border-radius: 5px;
+    margin-left: 32px;
+    top: 350px;
+    &__tooltip {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 39px;
+        height: 25px;
+        background: $white;
+        font-size: 8px;
+    }
+
+    &__legend {
+        color: $white;
+        opacity: 0.5;
+        max-width: 147px;
+        list-style: none;
+    }
+
+    & .recharts {
+        &__line {
+            transform: translateX(12px);
+        }
+    }
+    &__charts {
+        width: 20%;
+        height: 43%;
+    }
+}

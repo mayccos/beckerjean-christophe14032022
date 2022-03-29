@@ -1,26 +1,68 @@
 import axios from 'axios'
 
-let BaseURL = 'http://localhost:3000/user/'
+let CommonURL = 'http://localhost:3000/user/'
 
 async function getUserById(id) {
     try {
-        const response = await axios.get(BaseURL + id)
+        const response = await axios.get(CommonURL + id)
         if (response.status === 404) {
             throw new Error('error 404')
         }
-        if (response.ok) {
-            const data = response.data
-            console.log(data)
-
-            const userInfos = data.userInfos
-            console.log(userInfos)
-            return userInfos
-        }
+        const ddata = response.data.data
+        const userInfos = ddata.userInfos
+        const firstName = userInfos.firstName
+        const score = ddata.score
+        console.log(score)
+        return { userInfos, firstName, score }
     } catch (error) {
         console.error(error)
     }
 }
-export { getUserById }
+
+async function getUserActivityById(id) {
+    try {
+        const response = await axios.get(CommonURL + `${id}/activity`)
+
+        const ddata = response.data.data
+        const userActivity = ddata.sessions
+
+        return { userActivity }
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+async function getUserAverageById(id) {
+    try {
+        const response = await axios.get(CommonURL + `${id}/average-sessions`)
+
+        const ddata = response.data.data
+        const userAverage = ddata.sessions
+
+        return { userAverage }
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+async function getUserPerformancesById(id) {
+    try {
+        const response = await axios.get(CommonURL + `${id}/performance`)
+
+        const ddata = response.data.data
+        const dddata = ddata.data
+        console.log(dddata)
+        return { ddata }
+    } catch (error) {
+        console.error(error)
+    }
+}
+export {
+    getUserById,
+    getUserActivityById,
+    getUserAverageById,
+    getUserPerformancesById,
+}
 
 // export default function useFetch(url) {
 //     const [isLoading, setLoading] = useState(false)

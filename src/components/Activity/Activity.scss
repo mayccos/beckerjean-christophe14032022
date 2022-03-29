@@ -1,0 +1,41 @@
+@import '../../utils/colors';
+
+.activity {
+    width: 100%;
+
+    max-height: 320px;
+    padding: 24px 26px 20px 32px;
+    background: $lightGrey;
+    border-radius: 5px;
+
+    &__title {
+        font-size: 15px;
+        color: $darkGrey;
+    }
+    & .recharts {
+        &-legend-item {
+            margin-left: 30px;
+            &-text {
+                color: $grey !important;
+            }
+        }
+
+        &-surface {
+            margin-right: 10px !important;
+        }
+    }
+    & .tooltip {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        height: 63px;
+        width: 39px;
+        background: $primary-red;
+        color: $white;
+        font-size: 7px;
+
+        & p {
+            text-align: center;
+        }
+    }
+}

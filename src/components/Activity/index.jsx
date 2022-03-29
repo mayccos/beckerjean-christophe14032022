@@ -1,5 +1,8 @@
-import './BarCharts.scss'
-import useFetch from '../../utils/Hooks/Api'
+import { PropTypes } from 'prop-types'
+
+//Css
+import './Activity.scss'
+//Recharts
 import {
     BarChart,
     Bar,
@@ -8,67 +11,46 @@ import {
     CartesianGrid,
     Tooltip,
     Legend,
-    //ResponsiveContainer,
+    ResponsiveContainer,
 } from 'recharts'
 
-// const data = [
-//     {
-//         day: '2020-07-01',
-//         kilogram: 70,
-//         calories: 240,
-//     },
-//     {
-//         day: '2020-07-02',
-//         kilogram: 69,
-//         calories: 220,
-//     },
-//     {
-//         day: '2020-07-03',
-//         kilogram: 70,
-//         calories: 280,
-//     },
-//     {
-//         day: '2020-07-04',
-//         kilogram: 70,
-//         calories: 500,
-//     },
-//     {
-//         day: '2020-07-05',
-//         kilogram: 69,
-//         calories: 160,
-//     },
-//     {
-//         day: '2020-07-06',
-//         kilogram: 69,
-//         calories: 162,
-//     },
-//     {
-//         day: '2020-07-07',
-//         kilogram: 69,
-//         calories: 390,
-//     },
-// ]
-export default function BarCharts() {
-    const { data, isLoading, error } = useFetch(
-        `http://localhost:3000/user/18/activity`
-    )
-    const userActivities = data.sessions
-    console.log(userActivities)
-    if (error) {
+/**
+ *
+ * @description creation of a Component that is a custom  tooltip of the chart
+ * @param { Boolean } active - true if bars hovered over, false if not
+ * @param { Object } payload - the data data of overflown bars
+ * @returns { HTMLElement }
+ */
+const CustomTooltip = ({ active, payload }) => {
+    if (active && payload && payload.length) {
         return (
-            <span className="activity__error">Oups il y a eu un problème</span>
+            <div className="tooltip">
+                <p className="tooltip__kilogram">{payload[0].value + 'kg'}</p>
+                <p className="tooltip__calories">{payload[1].value + 'kcal'}</p>
+            </div>
         )
     }
+
+    return null
+}
+
+/**
+ *
+ * @description creation of a Component to  display a bar chart  of the weight
+ * and calories burned/day by user
+ * @param { Object } userActivity
+ * @param { Array.<Objects> } userActivity.data - the sessions of the user
+ * @returns { HTMLElement }
+ */
+
+export default function Activity(userActivity) {
     return (
         <div className="activity">
             <div className="activity__title">Activité quotidienne</div>
-            {isLoading ? (
-                <span className="activity__loading">Loading...</span>
-            ) : (
+            <ResponsiveContainer width={'60%'} aspect={4}>
                 <BarChart
-                    width={835}
-                    height={320}
-                    data={userActivities}
+                    height={300}
+                    data={userActivity.data}
                     barSize={8}
                     barGap={7}
                     margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
@@ -87,12 +69,9 @@ export default function BarCharts() {
                         dataKey="calories"
                         orientation="left"
                         hide={true}
-                        axisLine={false}
-                        tickLine={false}
-                        domain={['dataMin - 2', 'dataMax + 2']}
                     />
                     <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                    <Tooltip />
+                    <Tooltip content={<CustomTooltip />} offset={50} />
                     <Legend
                         payload={[
                             {
@@ -123,7 +102,10 @@ export default function BarCharts() {
                         radius={[10, 10, 0, 0]}
                     />
                 </BarChart>
-            )}
+            </ResponsiveContainer>
         </div>
     )
+}
+Activity.PropType = {
+    userActivity: PropTypes.object.isRequired,
 }

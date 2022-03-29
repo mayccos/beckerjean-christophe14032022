@@ -1,11 +1,22 @@
-import './SideBar.scss'
 import { Link } from 'react-router-dom'
+
+//Css
+import './SideBar.scss'
+
+//Icons
 import cyclistIcon from '../../assets/cyclistIcon.svg'
 import dumbbellIcon from '../../assets/dumbbellIcon.svg'
 import swimmingIcon from '../../assets/swimmingIcon.svg'
 import yogaIcon from '../../assets/yogaIcon.svg'
 
+/**
+ *
+ * @description Creation of component to display the icons in the side bar
+ * @param { String } image - image of the icon
+ * @returns
+ */
 function SideBar() {
+    //Actualization of year based on current year
     const currentYear = new Date().getFullYear()
 
     return (

@@ -2,6 +2,11 @@ import './Header.scss'
 import { Link } from 'react-router-dom'
 import logo from '../../assets/logo.svg'
 
+/**
+ *
+ * @description Creation of component to display the header of the site with the navigation
+ * @returns { HTMLElement }
+ */
 function Header() {
     return (
         <nav className="headerNav">

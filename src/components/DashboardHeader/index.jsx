@@ -1,6 +1,14 @@
-import './DashBoard.scss'
 import PropTypes from 'prop-types'
 
+//css
+import './DashBoard.scss'
+
+/**
+ *
+ * @description creation of a Component to  display the header of the dashboard
+ * @param { String } firstName - the firstName of the user
+ * @returns { HTMLElement }
+ */
 export default function DashboardHeader({ firstName }) {
     return (
         <div className="accueil">
