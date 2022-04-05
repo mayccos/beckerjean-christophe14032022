@@ -1,0 +1,12 @@
+$mediaQuery: (
+    small: 576px,
+    medium: 768px,
+    large: 992px,
+    xlarge: 1200px,
+);
+@mixin media-query($key) {
+    $size: map-get($mediaQuery, $key);
+    @media only screen and (max-width: $size) {
+        @content;
+    }
+}

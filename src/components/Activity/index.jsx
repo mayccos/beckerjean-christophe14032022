@@ -43,13 +43,24 @@ const CustomTooltip = ({ active, payload }) => {
  * @returns { HTMLElement }
  */
 
+/**
+ * to change format of date on X axis from yyyy-mm-dd to dd
+ * @param {string} date
+ * @returns {string}
+ */
+// function formatDate(date) {
+//     const dateToFormat = new Intl.DateTimeFormat({
+//         day: 'numeric',
+//     }).format(new Date(date))
+//     return dateToFormat
+// }
+
 export default function Activity(userActivity) {
     return (
         <div className="activity">
             <div className="activity__title">Activité quotidienne</div>
             <ResponsiveContainer width={'60%'} aspect={4}>
                 <BarChart
-                    height={300}
                     data={userActivity.data}
                     barSize={8}
                     barGap={7}
@@ -57,6 +68,7 @@ export default function Activity(userActivity) {
                 >
                     <XAxis dataKey="day" tickLine={false} tickMargin={15} />
                     <YAxis
+                        yAxisId="right"
                         dataKey="kilogram"
                         orientation="right"
                         axisLine={false}
@@ -92,11 +104,13 @@ export default function Activity(userActivity) {
                         wrapperStyle={{ top: '-20px', right: '-10px' }}
                     />
                     <Bar
+                        yAxisId="right"
                         dataKey="kilogram"
                         fill="#282D30"
                         radius={[10, 10, 0, 0]}
                     />
                     <Bar
+                        yAxisId="left"
                         dataKey="calories"
                         fill="#E60000"
                         radius={[10, 10, 0, 0]}

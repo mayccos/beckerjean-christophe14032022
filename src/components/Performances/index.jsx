@@ -26,14 +26,14 @@ function renderPolarAngleAxis(props) {
     )
 }
 
-export default function Performances(ddata) {
+export default function Performances(userPerformances) {
     return (
         <div className="radar">
             <RadarChart
                 cx="50%"
                 cy="50%"
                 outerRadius="70%"
-                data={ddata.data}
+                data={userPerformances}
                 innerRadius={10}
                 startAngle={30}
                 endAngle={-330}
@@ -46,6 +46,7 @@ export default function Performances(ddata) {
                 />
                 <PolarRadiusAxis axisLine={false} tick={false} />
                 <Radar
+                    name="performances"
                     dataKey="value"
                     fill="rgba(255, 1, 1)"
                     fillOpacity={0.7}

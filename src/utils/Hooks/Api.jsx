@@ -5,15 +5,27 @@ let CommonURL = 'http://localhost:3000/user/'
 async function getUserById(id) {
     try {
         const response = await axios.get(CommonURL + id)
-        if (response.status === 404) {
-            throw new Error('error 404')
-        }
+
         const ddata = response.data.data
         const userInfos = ddata.userInfos
         const firstName = userInfos.firstName
+        const keyData = ddata.keyData
+        const calorieCount = keyData.calorieCount
+        const proteinCount = keyData.proteinCount
+        const carbohydrateCount = keyData.carbohydrateCount
+        const lipidCount = keyData.lipidCount
         const score = ddata.score
-        console.log(score)
-        return { userInfos, firstName, score }
+        console.log(calorieCount)
+        return {
+            userInfos,
+            firstName,
+            score,
+            keyData,
+            calorieCount,
+            proteinCount,
+            carbohydrateCount,
+            lipidCount,
+        }
     } catch (error) {
         console.error(error)
     }
@@ -50,9 +62,9 @@ async function getUserPerformancesById(id) {
         const response = await axios.get(CommonURL + `${id}/performance`)
 
         const ddata = response.data.data
-        const dddata = ddata.data
-        console.log(dddata)
-        return { ddata }
+        const userPerformances = ddata
+
+        return { userPerformances }
     } catch (error) {
         console.error(error)
     }

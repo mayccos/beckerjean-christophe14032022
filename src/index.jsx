@@ -1,22 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.scss'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import SideBar from './components/SideBar'
+import './index.css'
+import { BrowserRouter as Router } from 'react-router-dom'
 import reportWebVitals from './reportWebVitals'
-import Header from './components/Header'
-import Profile from './pages/Profile'
-import Home from './pages/Home'
+import App from './App'
 ReactDOM.render(
     <React.StrictMode>
         <Router>
-            <Header />
-            <SideBar />
-
-            <Routes>
-                <Route exact path="/" element={<Home />} />
-                <Route path="/profile/:id" element={<Profile />} />
-            </Routes>
+            <App />
         </Router>
     </React.StrictMode>,
     document.getElementById('root')

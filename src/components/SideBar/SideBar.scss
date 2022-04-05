@@ -1,4 +1,5 @@
 @import '../../utils/colors';
+@import '../../utils/mediaQuery';
 
 .sideBar {
     background: $secondary-color;
@@ -6,6 +7,9 @@
     position: absolute;
     top: 0px;
     height: 100%;
+    // @include media-query(xlarge) {
+    //     height: 120% !important;
+    // }
     z-index: -1;
     display: flex;
     flex-direction: column;
@@ -16,17 +20,28 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding-top: 347px;
+        padding-top: 250px;
+        @include media-query(xlarge) {
+            padding-top: 50px;
+        }
     }
 
     &__icon {
+        margin-left: -10px;
         margin-bottom: 20px;
+        @include media-query(xlarge) {
+            width: 45px;
+            height: 45px;
+            margin-bottom: 25px;
+            margin-left: -20px;
+        }
     }
     &__icon:hover {
         transform: scale(1.4);
     }
 
     &__text {
+        padding-bottom: -150px;
         color: $white;
         transform: rotate(-90deg);
         font-size: 12px;

@@ -1,13 +1,50 @@
 import { Link } from 'react-router-dom'
+import { custom } from '../../utils/customizer'
+import styled from 'styled-components'
 
-//Css
-import './SideBar.scss'
-
-//Icons
+/**
+ * import Icons
+ */
 import cyclistIcon from '../../assets/cyclistIcon.svg'
 import dumbbellIcon from '../../assets/dumbbellIcon.svg'
 import swimmingIcon from '../../assets/swimmingIcon.svg'
 import yogaIcon from '../../assets/yogaIcon.svg'
+/**
+ * Css components
+ */
+const SideBarContainer = styled.div`
+    background-color: ${custom.colors.black};
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    display: grid;
+`
+
+const Copyright = styled.p`
+    color: ${custom.colors.white};
+    display: flex;
+    font-size: ${custom.fontSize.xSmall};
+    font-weight: ${custom.fontWeight.bold};
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.25rem;
+    transform: rotate(180deg);
+    writing-mode: vertical-lr;
+`
+
+const Image = styled.img`
+    margin-top: 0.938rem;
+    width: 3rem;
+`
+
+const SideBarLink = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 0.625rem;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+`
 
 /**
  *
@@ -20,23 +57,23 @@ function SideBar() {
     const currentYear = new Date().getFullYear()
 
     return (
-        <nav className="sideBar">
-            <div className="sideBar__container">
-                <Link to="/" className="sideBar__icon">
-                    <img src={yogaIcon} alt="yoga" />
+        <SideBarContainer>
+            <SideBarLink>
+                <Link to="/">
+                    <Image src={yogaIcon} alt="yoga" />
                 </Link>
-                <Link to="/" className="sideBar__icon">
-                    <img src={swimmingIcon} alt="natation" />
+                <Link to="/">
+                    <Image src={swimmingIcon} alt="natation" />
                 </Link>
-                <Link to="/" className="sideBar__icon">
-                    <img src={cyclistIcon} alt="vélo" />
+                <Link to="/">
+                    <Image src={cyclistIcon} alt="vélo" />
                 </Link>
-                <Link to="/" className="sideBar__icon">
-                    <img src={dumbbellIcon} alt="haltère" />
+                <Link to="/">
+                    <Image src={dumbbellIcon} alt="haltère" />
                 </Link>
-            </div>
-            <p className="sideBar__text">Copiryght, SportSee {currentYear}</p>
-        </nav>
+            </SideBarLink>
+            <Copyright>Copiryght, SportSee {currentYear}</Copyright>
+        </SideBarContainer>
     )
 }
 

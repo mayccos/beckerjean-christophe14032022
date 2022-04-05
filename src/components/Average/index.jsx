@@ -73,16 +73,25 @@ const hoverColorBackground = (e) => {
         let div = document.querySelector('.averageSessions')
         let windowWidth = div.clientWidth
         let mouseXPercentage = Math.round(
-            ((e.activeCoordinate.x + 12) / windowWidth) * 100
+            (e.activeCoordinate.x / windowWidth) * 100
         )
         div.style.background = `linear-gradient(90deg, rgba(255,0,0) ${mouseXPercentage}%, rgba(230,0,0) ${mouseXPercentage}%, rgba(230,0,0) 100%)`
     }
+}
+/**
+ * to change the format of day on X axis from number to letter
+ * @param {number} day
+ * @returns {string}
+ */
+export const formatDay = (day) => {
+    const newDayFormat = ['L', 'M', 'M', 'J', 'V', 'S', 'D']
+    if (day) return newDayFormat[day - 1]
 }
 
 export default function Average(userAverage) {
     return (
         <div className="averageSessions">
-            <ResponsiveContainer width={'100%'} aspect={1}>
+            <ResponsiveContainer width={'100%'} aspect={1.2} height={'100%'}>
                 <LineChart
                     className="averageSessions__charts"
                     data={userAverage.data}
@@ -92,6 +101,7 @@ export default function Average(userAverage) {
                     }}
                 >
                     <XAxis
+                        tickFormatter={formatDay}
                         dataKey="day"
                         tickLine={false}
                         axisLine={false}
@@ -136,9 +146,10 @@ export default function Average(userAverage) {
                         </linearGradient>
                     </defs>
                     <Line
-                        type="natural"
+                        type="monotone"
                         dataKey="day"
                         stroke="#fff"
+                        dot={false}
                         activeDot={<CustomActiveDot />}
                     />
                 </LineChart>

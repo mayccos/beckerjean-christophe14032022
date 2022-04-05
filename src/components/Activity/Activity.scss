@@ -1,12 +1,15 @@
 @import '../../utils/colors';
+@import '..//../utils/mediaQuery';
 
 .activity {
-    width: 100%;
+    //width: 100%;
 
-    max-height: 320px;
-    padding: 24px 26px 20px 32px;
+    padding: 24px 26px 20px 100px;
     background: $lightGrey;
     border-radius: 5px;
+    @include media-query(xlarge) {
+        padding: 24px 26px 20px 30px;
+    }
 
     &__title {
         font-size: 15px;
