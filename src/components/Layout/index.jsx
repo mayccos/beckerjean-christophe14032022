@@ -37,5 +37,5 @@ export const Layout = ({ children, isSideNav }) => {
 
 // PropTypes
 Layout.propTypes = {
-    isSideNavigation: PropTypes.bool,
+    isSideNav: PropTypes.bool,
 }

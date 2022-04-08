@@ -1,7 +1,6 @@
 import { PropTypes } from 'prop-types'
-
-//Css
-import './Activity.scss'
+import styled from 'styled-components'
+import { custom } from '../../utils/custom'
 //Recharts
 import {
     BarChart,
@@ -10,12 +9,77 @@ import {
     YAxis,
     CartesianGrid,
     Tooltip,
-    Legend,
     ResponsiveContainer,
+    //Legend,
 } from 'recharts'
 
+//Icon
+import BlackPoint from '../../assets/BlackPoint.svg'
+import RedPoint from '../../assets/RedPoint.svg'
 /**
- *
+ * CSS for component using styled.components
+ */
+const ActivityWrapper = styled.div`
+ grid-area: 1 / 1 / 3 / 4;
+ background-color: ${custom.colors.lightGrey};
+ border-radius: 5px;
+ padding 0.6rem;
+`
+const ToolTipLabel = styled.div`
+    background: ${custom.colors.primaryRed};
+    color: ${custom.colors.white};
+    font-size: ${custom.fontSize.xSmall};
+    font-weight: ${custom.fontWeight.bold};
+    margin: 0.3rem;
+    padding: 0.3rem;
+`
+
+const Title = styled.p`
+    font-size: ${custom.fontSize.small};
+    font-weight: ${custom.fontWeight.bold};
+    margin-left: 2.188rem;
+    margin-right: 2.188rem;
+    color: ${custom.colors.darkGrey};
+`
+const Legend = styled.div`
+    align-items: center;
+    display: flex;
+
+    margin-right: 1.313rem;
+    color: ${custom.colors.grey};
+    font-size: ${custom.fontSize.xSmall};
+`
+
+const Bullet = styled.span`
+    font-size: ${custom.fontSize.small};
+    font-weight: ${custom.fontWeight.bold};
+`
+const Heading = styled.div`
+    align-items: center;
+    display: flex;
+    font-weight: ${custom.fontWeight.bold};
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+`
+
+const ActivityHeader = () => {
+    return (
+        <Heading>
+            <Title>Activité quotidienne</Title>
+            <Legend>
+                <Bullet>
+                    <img src={BlackPoint} alt="" /> Poids (Kg)
+                </Bullet>
+
+                <Bullet>
+                    <img src={RedPoint} alt="" /> Calories brûlées (kCal)
+                </Bullet>
+            </Legend>
+        </Heading>
+    )
+}
+
+/**
  * @description creation of a Component that is a custom  tooltip of the chart
  * @param { Boolean } active - true if bars hovered over, false if not
  * @param { Object } payload - the data data of overflown bars
@@ -24,67 +88,68 @@ import {
 const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
         return (
-            <div className="tooltip">
+            <ToolTipLabel>
                 <p className="tooltip__kilogram">{payload[0].value + 'kg'}</p>
                 <p className="tooltip__calories">{payload[1].value + 'kcal'}</p>
-            </div>
+            </ToolTipLabel>
         )
     }
 
     return null
 }
-
-/**
- *
- * @description creation of a Component to  display a bar chart  of the weight
- * and calories burned/day by user
- * @param { Object } userActivity
- * @param { Array.<Objects> } userActivity.data - the sessions of the user
- * @returns { HTMLElement }
- */
-
 /**
  * to change format of date on X axis from yyyy-mm-dd to dd
  * @param {string} date
  * @returns {string}
  */
-// function formatDate(date) {
-//     const dateToFormat = new Intl.DateTimeFormat({
-//         day: 'numeric',
-//     }).format(new Date(date))
-//     return dateToFormat
-// }
 
-export default function Activity(userActivity) {
+const formatDate = (date) => {
+    const day = new Date(date)
+    return day.getDate().toString()
+}
+
+/**
+ * Creation of an Activities BarChart with Weight & Calories burned
+ * @param {object} activity
+ * @returns {JSX}
+ */
+export default function Activity({ activity }) {
     return (
-        <div className="activity">
-            <div className="activity__title">Activité quotidienne</div>
-            <ResponsiveContainer width={'60%'} aspect={4}>
-                <BarChart
-                    data={userActivity.data}
-                    barSize={8}
-                    barGap={7}
-                    margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-                >
-                    <XAxis dataKey="day" tickLine={false} tickMargin={15} />
+        <ActivityWrapper>
+            <ActivityHeader />
+            <ResponsiveContainer width="100%" height={250}>
+                <BarChart barGap={5} width="100%" data={activity}>
+                    <XAxis
+                        dataKey="day"
+                        tickFormatter={formatDate}
+                        tickLine={false}
+                        style={{ fontSize: '14px' }}
+                        strokeDasharray="0"
+                    />
                     <YAxis
-                        yAxisId="right"
-                        dataKey="kilogram"
+                        yAxisId="poids"
                         orientation="right"
                         axisLine={false}
                         tickLine={false}
-                        domain={['dataMin - 2', 'dataMax + 2']}
-                        tickMargin={35}
+                        tickCount="3"
+                        type="number"
+                        domain={['dataMin -3', 'auto']}
+                        style={{ fontSize: '14px' }}
                     />
                     <YAxis
-                        yAxisId="left"
-                        dataKey="calories"
+                        yAxisId="calories"
+                        tick={false}
                         orientation="left"
-                        hide={true}
+                        axisLine={false}
+                        tickLine={false}
+                        domain={['dataMin -10', 'dataMax + 10']}
                     />
-                    <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                    <Tooltip content={<CustomTooltip />} offset={50} />
-                    <Legend
+                    <Tooltip
+                        dy={4}
+                        content={<CustomTooltip />}
+                        cursor={{ fill: 'rgba(196, 196, 196, 0.5)' }}
+                    />
+                    {/* <Legend
                         payload={[
                             {
                                 value: 'Poids (kg)',
@@ -95,31 +160,47 @@ export default function Activity(userActivity) {
                                 value: 'Calories brûlées (kCal)',
                                 type: 'circle',
                                 id: 'ID02',
-                                color: '#E60000',
+                                color: custom.colors.primaryRed,
                             },
                         ]}
                         align="right"
                         verticalAlign="top"
                         iconSize={8}
-                        wrapperStyle={{ top: '-20px', right: '-10px' }}
+                        valueStyle={custom.colors.grey}
+                        wrapperStyle={{
+                            top: '-37px',
+                            right: '-10px',
+                        }}
+                    /> */}
+                    <CartesianGrid
+                        stroke="#DEDEDE"
+                        strokeDasharray="3"
+                        vertical={false}
                     />
                     <Bar
-                        yAxisId="right"
-                        dataKey="kilogram"
-                        fill="#282D30"
-                        radius={[10, 10, 0, 0]}
-                    />
-                    <Bar
-                        yAxisId="left"
+                        yAxisId="calories"
+                        name="kCal"
                         dataKey="calories"
-                        fill="#E60000"
-                        radius={[10, 10, 0, 0]}
+                        fill={custom.colors.primaryRed}
+                        barSize={8}
+                        radius={[50, 50, 0, 0]}
+                    />
+                    <Bar
+                        yAxisId="poids"
+                        name="kg"
+                        dataKey="kilogram"
+                        fill={custom.colors.darkGrey}
+                        barSize={8}
+                        radius={[50, 50, 0, 0]}
                     />
                 </BarChart>
             </ResponsiveContainer>
-        </div>
+        </ActivityWrapper>
     )
 }
+
+// PropTypes
+
 Activity.PropType = {
     userActivity: PropTypes.object.isRequired,
 }

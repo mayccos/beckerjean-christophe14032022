@@ -1,57 +1,84 @@
-//Css
-import './Performances.scss'
-import React from 'react'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
+import { custom } from '../../utils/custom'
+
+//Recharts
 import {
     Radar,
     RadarChart,
     PolarGrid,
     PolarAngleAxis,
-    PolarRadiusAxis,
-    Text,
+    ResponsiveContainer,
 } from 'recharts'
 
-function renderPolarAngleAxis(props) {
-    const { payload, x, y, cx, cy, ...rest } = props
-    return (
-        <Text
-            {...rest}
-            verticalAnchor="middle"
-            y={y + (y - cy) / 30}
-            x={x + (x - cx) / 30}
-            fontSize="clamp(8px, 0.8vw, 12px)"
-            fill="#FFF"
-        >
-            {payload.value}
-        </Text>
-    )
+/**
+ * Css of components using styled-components
+ */
+
+const PerformancesWrapper = styled.div`
+    grid-area: 3 / 2 / 5 / 3;
+    background: ${custom.colors.darkGrey};
+    border-radius: 5px;
+    width: 100%;
+    position: relative;
+    padding: 0.625rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
+/**
+ * Format the labels on the radar axis from number to words
+ * @param {number} kind
+ * @returns {string}
+ */
+const formatKind = (kind) => {
+    const newKindFormat = [
+        'Cardio',
+        'Energie',
+        'Endurance',
+        'Force',
+        'Vitesse',
+        'Intensité',
+    ]
+    if (kind) return newKindFormat[kind - 1]
 }
 
-export default function Performances(userPerformances) {
+/**
+ * Creation a Performance Radar chart
+ * @param {object} performances
+ * @returns {JSX}
+ */
+export default function Performances({ performances }) {
     return (
-        <div className="radar">
-            <RadarChart
-                cx="50%"
-                cy="50%"
-                outerRadius="70%"
-                data={userPerformances}
-                innerRadius={10}
-                startAngle={30}
-                endAngle={-330}
-            >
-                <PolarGrid radialLines={false} stroke="#FFF" />
-                <PolarAngleAxis
-                    dataKey="kind"
-                    tickLine={false}
-                    tick={(props) => renderPolarAngleAxis(props)}
-                />
-                <PolarRadiusAxis axisLine={false} tick={false} />
-                <Radar
-                    name="performances"
-                    dataKey="value"
-                    fill="rgba(255, 1, 1)"
-                    fillOpacity={0.7}
-                />
-            </RadarChart>
-        </div>
+        <PerformancesWrapper>
+            <ResponsiveContainer width="100%">
+                <RadarChart
+                    cy="50%"
+                    cx="50%"
+                    outerRadius="60%"
+                    data={performances}
+                >
+                    <PolarGrid radialLines={false} />
+                    <PolarAngleAxis
+                        dataKey="kind"
+                        tickFormatter={formatKind}
+                        stroke={custom.colors.white}
+                        tickLine={false}
+                        style={{ fontSize: '.7vw', fontWeight: '500' }}
+                    />
+                    <Radar
+                        name="Performances"
+                        dataKey="value"
+                        fill={custom.colors.secondaryRed}
+                        fillOpacity={0.7}
+                    />
+                </RadarChart>
+            </ResponsiveContainer>
+        </PerformancesWrapper>
     )
+}
+// PropTypes
+Performances.propTypes = {
+    performances: PropTypes.array,
 }

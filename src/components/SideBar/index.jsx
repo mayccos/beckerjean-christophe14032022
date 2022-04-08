@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { custom } from '../../utils/customizer'
+import { custom } from '../../utils/custom'
 import styled from 'styled-components'
 
 /**
@@ -33,6 +33,9 @@ const Copyright = styled.p`
 const Image = styled.img`
     margin-top: 0.938rem;
     width: 3rem;
+    &:hover {
+        transform: scale(1.3);
+    }
 `
 
 const SideBarLink = styled.div`

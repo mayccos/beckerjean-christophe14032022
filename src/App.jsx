@@ -12,7 +12,7 @@ function App() {
         <Routes>
             <Route path="*" element={<Error />} />
             <Route path="/" index element={<Home />} />
-            <Route path="/profile/:Id" element={<Profile />} />
+            <Route path="/profile/:id" element={<Profile />} />
         </Routes>
     )
 }

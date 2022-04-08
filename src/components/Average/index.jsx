@@ -1,6 +1,7 @@
 import { PropTypes } from 'prop-types'
-//Css
-import './Average.scss'
+import styled from 'styled-components'
+import { custom } from '../../utils/custom'
+//Recharts
 import {
     LineChart,
     Line,
@@ -8,76 +9,57 @@ import {
     YAxis,
     CartesianGrid,
     Tooltip,
-    Legend,
-    Dot,
     ResponsiveContainer,
 } from 'recharts'
-import React from 'react'
-
-function renderLegend(props) {
-    const { payload } = props
-
-    return (
-        <ul>
-            {payload.map((index) => (
-                <li key={`item-${index}`} className="averageSessions__legend">
-                    Durée moyenne des sessions
-                </li>
-            ))}
-        </ul>
-    )
-}
+/**
+ * Css of components using styled-components
+ */
+const AverageWrapper = styled.div`
+    grid-area: 3 / 1 / 5 / 2;
+    background: ${custom.colors.primaryRed};
+    border-radius: 5px;
+    width: 100%;
+    position: relative;
+    padding: 0.625rem;
+    margin-left: 2rem;
+`
+const AverageLegend = styled.h2`
+    color: ${custom.colors.white};
+    font-size: 1.3vw;
+    font-weight: ${custom.fontWeight.bold};
+    left: 0.7rem;
+    opacity: 0.8;
+    position: absolute;
+    top: 0rem;
+    width: 10.625rem;
+`
+const ToolTipLabel = styled.label`
+    background: ${custom.colors.white};
+    color: ${custom.colors.black};
+    font-size: ${custom.fontSize.xSmall};
+    font-weight: ${custom.fontWeight.bold};
+    height: 1.25rem;
+    line-height: 0.25rem;
+    padding: 0.525rem;
+    width: 1.563rem;
+`
 
 /**
  *
- * @description Creation of a component to custom the tooltip of the chart
+ * @description Creation of a tootTip component to show the information
+ *              when user hovers on the line chart
  * @param { Boolean } active - true if line hovered over, false if not
  * @param { Object } payload - the data data of overflown line
- * @returns { HTMLElement }
+ * @returns { JSX }
  */
 const CustomTooltip = ({ active, payload }) => {
-    if (active && payload && payload.length) {
-        return (
-            <div className="averageSessions__tooltip">
-                <p className="label">{`${payload[0].value} min`}</p>
-            </div>
-        )
+    if (active && payload) {
+        return <ToolTipLabel>{`${payload[0].value} min`}</ToolTipLabel>
     }
 
     return null
 }
 
-/**
- *
- * @description Creation of a component to display a custom dot when the dot is active on the chart
- * @param { object } props - The properties of the active dot
- * @returns { HTMLElement }
- */
-const CustomActiveDot = (props) => {
-    const { cy, cx } = props
-
-    return (
-        <>
-            <Dot r={4} cy={cy} cx={cx + 12} fill="#FFF" />
-            <Dot r={8} cy={cy} cx={cx + 12} fill="rgba(255, 255, 255, 0.3)" />
-        </>
-    )
-}
-/**
- *
- * @description function to custom the background color of the chart according to the point flown over
- * @param { Object } e - Properties of the event
- */
-const hoverColorBackground = (e) => {
-    if (e.isTooltipActive === true) {
-        let div = document.querySelector('.averageSessions')
-        let windowWidth = div.clientWidth
-        let mouseXPercentage = Math.round(
-            (e.activeCoordinate.x / windowWidth) * 100
-        )
-        div.style.background = `linear-gradient(90deg, rgba(255,0,0) ${mouseXPercentage}%, rgba(230,0,0) ${mouseXPercentage}%, rgba(230,0,0) 100%)`
-    }
-}
 /**
  * to change the format of day on X axis from number to letter
  * @param {number} day
@@ -88,75 +70,63 @@ export const formatDay = (day) => {
     if (day) return newDayFormat[day - 1]
 }
 
-export default function Average(userAverage) {
+export default function Average({ average }) {
     return (
-        <div className="averageSessions">
-            <ResponsiveContainer width={'100%'} aspect={1.2} height={'100%'}>
+        <AverageWrapper>
+            <AverageLegend>Durée moyenne des sessions</AverageLegend>
+            <ResponsiveContainer width="100%" height={250}>
                 <LineChart
-                    className="averageSessions__charts"
-                    data={userAverage.data}
-                    margin={{ top: 5, right: 16, left: 14, bottom: 5 }}
-                    onMouseMove={(e) => {
-                        hoverColorBackground(e)
-                    }}
+                    data={average}
+                    margin={{ top: 0, right: 8, bottom: 0, left: -55 }}
                 >
                     <XAxis
-                        tickFormatter={formatDay}
-                        dataKey="day"
+                        axisLine={false}
                         tickLine={false}
-                        axisLine={false}
-                        tick={{
-                            fill: '#FFF',
+                        dataKey="day"
+                        tickFormatter={formatDay}
+                        stroke={custom.colors.white}
+                        style={{
                             fontSize: '12px',
-                            opacity: 0.5,
+                            fontWeight: '500',
+                            opacity: '0.8',
                         }}
-                        allowDataOverflow={true}
                     />
-                    <YAxis hide={true} domain={[0, 'dataMax + 20']} />
-
-                    <CartesianGrid
-                        vertical={false}
-                        horizontal={false}
+                    <YAxis
+                        dataKey="sessionLength"
                         axisLine={false}
+                        tick={false}
+                        domain={['dataMin -2', 'dataMax + 20']}
                     />
-                    <Tooltip content={<CustomTooltip />} cursor={false} />
-                    <Legend
-                        verticalAlign="top"
-                        wrapperStyle={{ left: '2%', top: '11%' }}
-                        content={renderLegend}
+                    <Tooltip
+                        content={<CustomTooltip />}
+                        cursor={{
+                            stroke: custom.colors.black,
+                            strokeOpacity: 0.1,
+                            strokeWidth: '45',
+                        }}
+                        offset={30}
                     />
-                    <defs>
-                        <linearGradient
-                            id="colorSessionLength"
-                            x1="1"
-                            y1="0"
-                            x2="0"
-                            y2="0"
-                        >
-                            <stop
-                                offset="10%"
-                                stopColor="#FFF"
-                                stopOpacity={1}
-                            />
-                            <stop
-                                offset="90%"
-                                stopColor="#FFF"
-                                stopOpacity={0.5}
-                            />
-                        </linearGradient>
-                    </defs>
+                    <CartesianGrid
+                        strokeDasharray="0"
+                        horizontal={false}
+                        vertical={false}
+                    />
                     <Line
                         type="monotone"
-                        dataKey="day"
-                        stroke="#fff"
+                        dataKey="sessionLength"
+                        stroke={custom.colors.white}
+                        strokeWidth={2}
                         dot={false}
-                        activeDot={<CustomActiveDot />}
+                        style={{
+                            opacity: '0.7',
+                        }}
+                        activeDot={{ r: 3, strokeWidth: 9, strokeOpacity: 0.3 }}
                     />
                 </LineChart>
             </ResponsiveContainer>
-        </div>
+        </AverageWrapper>
     )
 }
 Average.PropType = {
-    userAverage: PropTypes.object.isRequired,
+    average: PropTypes.array.isRequired,
 }

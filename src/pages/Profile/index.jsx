@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import styled from 'styled-components'
 /**
  * API
  */
@@ -14,12 +15,18 @@ import {
  * Components
  */
 import { Layout } from '../../components/Layout'
-import DashboardHeader from '../../components/DashboardHeader'
-import Activity from '../../components/Activity'
-import Average from '../../components/Average'
-import Performances from '../../components/Performances'
-import UserKeyData from '../../components/UserKeyData'
+import UserStatistics from '../../components/UserStatistics'
 
+import ProfileHeader from '../../components/ProfileHeader'
+
+/**
+ * Css components that are using  styled-components
+ */
+const Contents = styled.div`
+    min-height: 90vh;
+    padding: 2.5rem;
+    padding-top: 1rem;
+`
 function Profile() {
     const { id } = useParams()
     const [user, setUser] = useState({})
@@ -47,34 +54,25 @@ function Profile() {
         }
         axios()
     }, [id])
+
     return (
         <Layout isSideNav>
-            <div className="profile">
+            <Contents>
                 {isLoading ? (
                     <p>Loading...</p>
                 ) : (
                     <>
-                        <DashboardHeader firstName={user.firstName} />
-                        <div className="Dashboard__charts">
-                            <div className="Dashboard__charts__left">
-                                <Activity data={userActivity.userActivity} />
-                                <Average data={userAverage.userAverage} />
-                                <Performances
-                                    data={userPerformances.userPerformances}
-                                />
-                            </div>
-                            <div className="Dashboard__charts__right">
-                                <UserKeyData
-                                    calorieCount={user.calorieCount}
-                                    proteinCount={user.proteinCount}
-                                    carbohydrateCount={user.carbohydrateCount}
-                                    lipidCount={user.lipidCount}
-                                />
-                            </div>
-                        </div>
+                        <ProfileHeader firstName={user.firstName} />
+                        <UserStatistics
+                            activity={userActivity.userActivity}
+                            average={userAverage.userAverage}
+                            performances={userPerformances.userPerformances}
+                            score={user.score}
+                            keyData={user.keyData}
+                        />
                     </>
                 )}
-            </div>
+            </Contents>
         </Layout>
     )
 }

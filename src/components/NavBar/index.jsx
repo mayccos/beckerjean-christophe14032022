@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import logo from '../../assets/logo.svg'
-import { custom } from '../../utils/customizer'
+import { custom } from '../../utils/custom'
 /**
  * Css components
  */
@@ -24,10 +24,12 @@ color:  ${custom.colors.white};
 font-size: ${custom.fontSize.medium};
 font-weight: ${custom.fontWeight.bold};
 padding: 0.3rem;
+
+
 text-decoration: none;
 &:hover {
   color: ${custom.colors.primaryRed};
-  transform: scale(1.4);
+  transform: scale(1.2);
 `
 
 /**

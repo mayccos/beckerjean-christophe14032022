@@ -14,8 +14,8 @@ async function getUserById(id) {
         const proteinCount = keyData.proteinCount
         const carbohydrateCount = keyData.carbohydrateCount
         const lipidCount = keyData.lipidCount
-        const score = ddata.score
-        console.log(calorieCount)
+        const score = ddata.todayScore
+
         return {
             userInfos,
             firstName,
@@ -62,7 +62,7 @@ async function getUserPerformancesById(id) {
         const response = await axios.get(CommonURL + `${id}/performance`)
 
         const ddata = response.data.data
-        const userPerformances = ddata
+        const userPerformances = ddata.data
 
         return { userPerformances }
     } catch (error) {
@@ -75,31 +75,3 @@ export {
     getUserAverageById,
     getUserPerformancesById,
 }
-
-// export default function useFetch(url) {
-//     const [isLoading, setLoading] = useState(false)
-//     const [error, setError] = useState(false)
-//     const [data, setData] = useState({})
-
-//     useEffect(() => {
-//         if (!url) {
-//             return setLoading(true)
-//         }
-
-//         async function fetchData() {
-//             try {
-//                 const response = await fetch(url)
-//                 const { data } = await response.json()
-
-//                 setData(data)
-//             } catch (err) {
-//                 console.log(err)
-//                 setError(true)
-//             } finally {
-//                 setLoading(false)
-//             }
-//         }
-//         fetchData()
-//     }, [url])
-//     return { isLoading, error, data }
-// }
