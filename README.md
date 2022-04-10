@@ -1,6 +1,3 @@
-[![forthebadge](https://forthebadge.com/generator/?plabel=BUILD+WITH&slabel=CREATE+REAC+APP&sbg=%23000000&pbg=%23A6110B)](https://forthebadge.com)
-[![forthebadge](https://forthebadge.com/generator/?plabel=NODE.JS&slabel=16.13.0&sbg=%235D9741&pbg=%232F3336)](https://forthebadge.com)
-
 # SportSee
 
 SportSee is a startup dedicated to sports coaching. In a way to improve the user experience, SportSee decided to build a new version of the profile page, including allowing users to track the number of sessions completed as well as the number of calories burned.
