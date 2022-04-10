@@ -44,7 +44,11 @@ text-decoration: none;
     color: ${custom.colors.white};
     transform: scale(1.2);`
 
-function Home() {
+/**
+ * Render Home page
+ * @returns {JSX}
+ */
+export default function Home() {
     return (
         <Layout>
             <Contents>
@@ -59,5 +63,3 @@ function Home() {
         </Layout>
     )
 }
-
-export default Home

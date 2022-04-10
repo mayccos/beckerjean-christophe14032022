@@ -62,6 +62,10 @@ const Heading = styled.div`
     margin-bottom: 1.25rem;
 `
 
+/**
+ * Renders Activities BarChart legend
+ * @returns {JSX}
+ */
 const ActivityHeader = () => {
     return (
         <Heading>
@@ -149,29 +153,7 @@ export default function Activity({ activity }) {
                         content={<CustomTooltip />}
                         cursor={{ fill: 'rgba(196, 196, 196, 0.5)' }}
                     />
-                    {/* <Legend
-                        payload={[
-                            {
-                                value: 'Poids (kg)',
-                                type: 'circle',
-                                id: 'ID01',
-                            },
-                            {
-                                value: 'Calories brûlées (kCal)',
-                                type: 'circle',
-                                id: 'ID02',
-                                color: custom.colors.primaryRed,
-                            },
-                        ]}
-                        align="right"
-                        verticalAlign="top"
-                        iconSize={8}
-                        valueStyle={custom.colors.grey}
-                        wrapperStyle={{
-                            top: '-37px',
-                            right: '-10px',
-                        }}
-                    /> */}
+
                     <CartesianGrid
                         stroke="#DEDEDE"
                         strokeDasharray="3"

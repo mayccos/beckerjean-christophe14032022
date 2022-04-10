@@ -4,7 +4,7 @@ import NavBar from '../NavBar'
 import SideBar from '../SideBar'
 
 /**
- * Css component
+ * CSS for component using styled.components
  */
 const SideBarWidth = '7.5rem'
 const Container = styled.main`

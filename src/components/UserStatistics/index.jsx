@@ -10,7 +10,7 @@ import Score from '../Score'
 import UserKeyData from '../UserKeyData'
 
 /**
- * Css components using styled components
+ * CSS for component using styled.components
  */
 const StatsGraphs = styled.div`
     grid-area: 1 / 1 / 5 / 4;

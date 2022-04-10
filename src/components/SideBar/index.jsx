@@ -10,7 +10,7 @@ import dumbbellIcon from '../../assets/dumbbellIcon.svg'
 import swimmingIcon from '../../assets/swimmingIcon.svg'
 import yogaIcon from '../../assets/yogaIcon.svg'
 /**
- * Css components
+ * CSS for component using styled.components
  */
 const SideBarContainer = styled.div`
     background-color: ${custom.colors.black};

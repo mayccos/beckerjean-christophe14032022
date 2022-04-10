@@ -12,7 +12,7 @@ import {
 } from 'recharts'
 
 /**
- * Css of components using styled-components
+ * CSS for component using styled.components
  */
 
 const PerformancesWrapper = styled.div`

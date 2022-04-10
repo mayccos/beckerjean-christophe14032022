@@ -27,7 +27,12 @@ const Contents = styled.div`
     padding: 2.5rem;
     padding-top: 1rem;
 `
-function Profile() {
+
+/**
+ * Renders the Profile of a user with all their stats
+ * @returns {JSX}
+ */
+export default function Profile() {
     const { id } = useParams()
     const [user, setUser] = useState({})
     const [userActivity, setUserActivities] = useState([])
@@ -76,5 +81,3 @@ function Profile() {
         </Layout>
     )
 }
-
-export default Profile

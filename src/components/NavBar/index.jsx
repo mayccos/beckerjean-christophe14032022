@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import logo from '../../assets/logo.svg'
 import { custom } from '../../utils/custom'
 /**
- * Css components
+ * CSS for component using styled.components
  */
 
 const Image = styled.img`
@@ -31,12 +31,6 @@ text-decoration: none;
   color: ${custom.colors.primaryRed};
   transform: scale(1.2);
 `
-
-/**
- *
- * @description Creation of component to display the header of the site with the navigation
- * @returns { HTMLElement }
- */
 
 /**
  * Renders the Header Navigation Bar

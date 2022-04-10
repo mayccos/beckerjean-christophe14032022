@@ -12,7 +12,7 @@ import {
     ResponsiveContainer,
 } from 'recharts'
 /**
- * Css of components using styled-components
+ * CSS for component using styled.components
  */
 const AverageWrapper = styled.div`
     grid-area: 3 / 1 / 5 / 2;
@@ -69,7 +69,11 @@ export const formatDay = (day) => {
     const newDayFormat = ['L', 'M', 'M', 'J', 'V', 'S', 'D']
     if (day) return newDayFormat[day - 1]
 }
-
+/**
+ * Renders Average Sessions Line Chart
+ * @param {array} average
+ * @returns {JSX}
+ */
 export default function Average({ average }) {
     return (
         <AverageWrapper>
@@ -127,6 +131,8 @@ export default function Average({ average }) {
         </AverageWrapper>
     )
 }
+
+//PropTypes
 Average.PropType = {
     average: PropTypes.array.isRequired,
 }
