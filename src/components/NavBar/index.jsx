@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import logo from '../../assets/logo.svg'
 import { custom } from '../../utils/custom'
 /**
+ *
  * CSS for component using styled.components
  */
 
@@ -33,6 +34,7 @@ text-decoration: none;
 `
 
 /**
+ *
  * Renders the Header Navigation Bar
  * @returns {JSX}
  */

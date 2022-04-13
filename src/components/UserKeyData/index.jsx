@@ -9,6 +9,7 @@ import cheeseburger from '../../assets/cheeseburger.svg'
 import apple from '../../assets/apple.svg'
 
 /**
+ *
  * CSS for the component using styled.components
  */
 const ElementsWrapper = styled.div`
@@ -49,7 +50,8 @@ const ElementCategory = styled.p`
 `
 
 /**
- * Renders the data showing calories, carbs, fats & protiens
+ *
+ * Renders the data showing calories, carbs, fats & proteins
  * @param {object} keyData
  * @returns {JSX}
  */

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { Layout } from '../../components/Layout'
 import { custom } from '../../utils/custom'
 /**
+ *
  * CSS for component using styled.components
  */
 const Contents = styled.main`
@@ -29,6 +30,7 @@ const Logo = styled.img``
 const Title = styled.h2``
 
 /**
+ *
  * Render Error 404 page
  * @returns {JSX}
  */

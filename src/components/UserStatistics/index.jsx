@@ -10,6 +10,7 @@ import Score from '../Score'
 import UserKeyData from '../UserKeyData'
 
 /**
+ *
  * CSS for component using styled.components
  */
 const StatsGraphs = styled.div`
@@ -33,6 +34,7 @@ const AnalysisCharts = styled.div`
 `
 
 /**
+ *
  * Renders the Statistics of a user
  * @param {object} user
  * @returns {JSX}

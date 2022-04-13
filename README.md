@@ -19,7 +19,7 @@ SportSee is a startup dedicated to sports coaching. In a way to improve the user
 ### Backend API
 
 -   Clone the Backend API on your computer: git clone https://github.com/mayccos/P12-back-end-dashboard.git
--   Install the dependencies with: yarn install or npm install
+-   Install the dependencies: yarn install or npm install
 
 ### Frontend APP
 

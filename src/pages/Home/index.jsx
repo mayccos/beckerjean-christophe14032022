@@ -5,6 +5,7 @@ import { custom } from '../../utils/custom'
 import { Layout } from '../../components/Layout'
 
 /**
+ *
  * CSS for the component using styled.components
  */
 const Contents = styled.main`
@@ -45,6 +46,7 @@ text-decoration: none;
     transform: scale(1.2);`
 
 /**
+ *
  * Render Home page
  * @returns {JSX}
  */

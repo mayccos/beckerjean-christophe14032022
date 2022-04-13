@@ -55,6 +55,7 @@ const ScoreText = styled.p`
 `
 
 /**
+ *
  * Renders the user's score on a RadialBarChart
  * @param {number} score
  * @returns {JSX}

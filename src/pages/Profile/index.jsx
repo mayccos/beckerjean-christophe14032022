@@ -20,6 +20,7 @@ import UserStatistics from '../../components/UserStatistics'
 import ProfileHeader from '../../components/ProfileHeader'
 
 /**
+ *
  * Css components that are using  styled-components
  */
 const Contents = styled.div`
@@ -29,6 +30,7 @@ const Contents = styled.div`
 `
 
 /**
+ *
  * Renders the Profile of a user with all their stats
  * @returns {JSX}
  */

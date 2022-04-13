@@ -2,14 +2,14 @@ import { Link } from 'react-router-dom'
 import { custom } from '../../utils/custom'
 import styled from 'styled-components'
 
-/**
- * import Icons
- */
+//import Icons
 import cyclistIcon from '../../assets/cyclistIcon.svg'
 import dumbbellIcon from '../../assets/dumbbellIcon.svg'
 import swimmingIcon from '../../assets/swimmingIcon.svg'
 import yogaIcon from '../../assets/yogaIcon.svg'
+
 /**
+ *
  * CSS for component using styled.components
  */
 const SideBarContainer = styled.div`
@@ -53,7 +53,7 @@ const SideBarLink = styled.div`
  *
  * @description Creation of component to display the icons in the side bar
  * @param { String } image - image of the icon
- * @returns
+ * @returns {jsx}
  */
 function SideBar() {
     //Actualization of year based on current year

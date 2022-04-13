@@ -1,4 +1,32 @@
-import { PropTypes } from 'prop-types'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/Activity/index.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/Activity/index.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { PropTypes } from 'prop-types'
 import styled from 'styled-components'
 import { custom } from '../../utils/custom'
 //Recharts
@@ -69,18 +97,18 @@ const Heading = styled.div`
  */
 const ActivityHeader = () => {
     return (
-        <Heading>
-            <Title>Activité quotidienne</Title>
-            <Legend>
-                <Bullet>
-                    <img src={BlackPoint} alt="" /> Poids (Kg)
-                </Bullet>
+        &lt;Heading>
+            &lt;Title>Activité quotidienne&lt;/Title>
+            &lt;Legend>
+                &lt;Bullet>
+                    &lt;img src={BlackPoint} alt="" /> Poids (Kg)
+                &lt;/Bullet>
 
-                <Bullet>
-                    <img src={RedPoint} alt="" /> Calories brûlées (kCal)
-                </Bullet>
-            </Legend>
-        </Heading>
+                &lt;Bullet>
+                    &lt;img src={RedPoint} alt="" /> Calories brûlées (kCal)
+                &lt;/Bullet>
+            &lt;/Legend>
+        &lt;/Heading>
     )
 }
 
@@ -92,12 +120,12 @@ const ActivityHeader = () => {
  * @returns { HTMLElement }
  */
 const CustomTooltip = ({ active, payload }) => {
-    if (active && payload && payload.length) {
+    if (active &amp;&amp; payload &amp;&amp; payload.length) {
         return (
-            <ToolTipLabel>
-                <p className="tooltip__kilogram">{payload[0].value + 'kg'}</p>
-                <p className="tooltip__calories">{payload[1].value + 'kcal'}</p>
-            </ToolTipLabel>
+            &lt;ToolTipLabel>
+                &lt;p className="tooltip__kilogram">{payload[0].value + 'kg'}&lt;/p>
+                &lt;p className="tooltip__calories">{payload[1].value + 'kcal'}&lt;/p>
+            &lt;/ToolTipLabel>
         )
     }
 
@@ -117,24 +145,24 @@ const formatDate = (date) => {
 
 /**
  *
- * Creation of an Activities BarChart with Weight & Calories burned
+ * Creation of an Activities BarChart with Weight &amp; Calories burned
  * @param {object} activity
  * @returns {JSX}
  */
 export default function Activity({ activity }) {
     return (
-        <ActivityWrapper>
-            <ActivityHeader />
-            <ResponsiveContainer width="100%" height={250}>
-                <BarChart barGap={5} width="100%" data={activity}>
-                    <XAxis
+        &lt;ActivityWrapper>
+            &lt;ActivityHeader />
+            &lt;ResponsiveContainer width="100%" height={250}>
+                &lt;BarChart barGap={5} width="100%" data={activity}>
+                    &lt;XAxis
                         dataKey="day"
                         tickFormatter={formatDate}
                         tickLine={false}
                         style={{ fontSize: '14px' }}
                         strokeDasharray="0"
                     />
-                    <YAxis
+                    &lt;YAxis
                         yAxisId="poids"
                         orientation="right"
                         axisLine={false}
@@ -144,7 +172,7 @@ export default function Activity({ activity }) {
                         domain={['dataMin -3', 'auto']}
                         style={{ fontSize: '14px' }}
                     />
-                    <YAxis
+                    &lt;YAxis
                         yAxisId="calories"
                         tick={false}
                         orientation="left"
@@ -152,18 +180,18 @@ export default function Activity({ activity }) {
                         tickLine={false}
                         domain={['dataMin -10', 'dataMax + 10']}
                     />
-                    <Tooltip
+                    &lt;Tooltip
                         dy={4}
-                        content={<CustomTooltip />}
+                        content={&lt;CustomTooltip />}
                         cursor={{ fill: 'rgba(196, 196, 196, 0.5)' }}
                     />
 
-                    <CartesianGrid
+                    &lt;CartesianGrid
                         stroke="#DEDEDE"
                         strokeDasharray="3"
                         vertical={false}
                     />
-                    <Bar
+                    &lt;Bar
                         yAxisId="calories"
                         name="kCal"
                         dataKey="calories"
@@ -171,7 +199,7 @@ export default function Activity({ activity }) {
                         barSize={8}
                         radius={[50, 50, 0, 0]}
                     />
-                    <Bar
+                    &lt;Bar
                         yAxisId="poids"
                         name="kg"
                         dataKey="kilogram"
@@ -179,9 +207,9 @@ export default function Activity({ activity }) {
                         barSize={8}
                         radius={[50, 50, 0, 0]}
                     />
-                </BarChart>
-            </ResponsiveContainer>
-        </ActivityWrapper>
+                &lt;/BarChart>
+            &lt;/ResponsiveContainer>
+        &lt;/ActivityWrapper>
     )
 }
 
@@ -190,3 +218,26 @@ export default function Activity({ activity }) {
 Activity.PropType = {
     userActivity: PropTypes.object.isRequired,
 }
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#ActivityHeader">ActivityHeader</a></li><li><a href="global.html#App">App</a></li><li><a href="global.html#CustomTooltip">CustomTooltip</a></li><li><a href="global.html#Error">Error</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#formatKind">formatKind</a></li><li><a href="global.html#getUserActivityById">getUserActivityById</a></li><li><a href="global.html#getUserAverageById">getUserAverageById</a></li><li><a href="global.html#getUserById">getUserById</a></li><li><a href="global.html#getUserPerformancesById">getUserPerformancesById</a></li><li><a href="global.html#SideBar">SideBar</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Wed Apr 13 2022 14:47:37 GMT+0200 (heure d’été d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

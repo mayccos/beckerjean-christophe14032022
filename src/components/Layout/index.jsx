@@ -4,6 +4,7 @@ import NavBar from '../NavBar'
 import SideBar from '../SideBar'
 
 /**
+ *
  * CSS for component using styled.components
  */
 const SideBarWidth = '7.5rem'
@@ -14,6 +15,7 @@ const Container = styled.main`
 `
 
 /**
+ *
  * Creation of a global layout architecture, present on each page
  * @param {boolean} isSideNav
  * @param {object} children

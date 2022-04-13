@@ -12,6 +12,7 @@ import {
 } from 'recharts'
 
 /**
+ *
  * CSS for component using styled.components
  */
 
@@ -28,6 +29,7 @@ const PerformancesWrapper = styled.div`
 `
 
 /**
+ *
  * Format the labels on the radar axis from number to words
  * @param {number} kind
  * @returns {string}
@@ -45,6 +47,7 @@ const formatKind = (kind) => {
 }
 
 /**
+ *
  * Creation a Performance Radar chart
  * @param {object} performances
  * @returns {JSX}
