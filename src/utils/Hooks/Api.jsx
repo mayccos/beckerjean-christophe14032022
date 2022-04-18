@@ -8,6 +8,7 @@ let CommonURL = 'http://localhost:3000/user/'
  * @param { string } id - The Id of the user
  * @returns Object
  */
+
 async function getUserById(id) {
     try {
         const response = await axios.get(CommonURL + id)
@@ -32,8 +33,10 @@ async function getUserById(id) {
             carbohydrateCount,
             lipidCount,
         }
-    } catch (error) {
-        console.error(error)
+    } catch (err) {
+        console.error(err)
+        //redirect to page error
+        window.location.replace('/*')
     }
 }
 
